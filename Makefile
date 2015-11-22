@@ -6,7 +6,6 @@ VERSION=7
 all: build
 
 build:
-#	(cd ansible && ansible-galaxy install --force -r requirements.yml)
 	docker build -t $(AUTHOR)/$(NAME):$(VERSION) .
 
 bash:
@@ -19,4 +18,4 @@ help:
 	@docker inspect $(AUTHOR)/$(NAME):$(VERSION) | grep -i running | head -1
 
 test:
-	open http://192.168.99.100:8080/gameoflife/
+	open http://$(DOCKERHOST):8080/gameoflife/
