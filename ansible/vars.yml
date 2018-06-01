@@ -1,14 +1,27 @@
 
 ansible_os_family: RedHat
+ansible_distribution: centos
+java_packages:
+        - java-1.8.0-openjdk
 
 tomcat_java_home: /usr/lib/jvm/jre
-tomcat_minor: 62
-tomcat_version: v7.0.{{tomcat_minor}}
-tomcat_download_prefix: "http://archive.apache.org/dist/tomcat/tomcat-7/{{ tomcat_version }}/bin"
+tomcat_minor: 8
+tomcat_version: v9.0.{{tomcat_minor}}
+tomcat_download_prefix: "http://archive.apache.org/dist/tomcat/tomcat-9/{{ tomcat_version }}/bin"
 tomcat_list:
-  v7.0.62:
-    filename: 'apache-tomcat-7.0.{{tomcat_minor}}.tar.gz'
-    dirname: 'apache-tomcat-7.0.{{tomcat_minor}}'
+  v9.0.8:
+    filename: 'apache-tomcat-9.0.{{tomcat_minor}}.tar.gz'
+    dirname: 'apache-tomcat-9.0.{{tomcat_minor}}'
+tomcat_extra_libs:
+  - state: enabled
+    src: apache-tomcat/9.0.8/catalina-jmx-remote.jar
+    dest: lib/catalina-jmx-remote.jar
+
+tomcat_service: tomcat
+
+tomcat_packages:
+  - logrotate
+
 tomcat_apps_dir: "/opt/{{ tomcat_list[tomcat_version]['dirname'] }}"
 
 user: tomcat
