@@ -6,11 +6,13 @@ ADD ansible /tmp/ansible
 
 RUN yum update -y && \
     yum install -y epel-release && \
-    yum install -y ansible tar && \
+    yum install -y git ansible tar && \
     yum clean all && \
     cd /tmp/ansible && \
     ansible-galaxy install --force -r requirements.yml && \
     ansible-playbook playbook.yml
+
+RUN yum remove -y git ansible
 
 ADD webapps /opt/apache-tomcat/webapps
 ENV CATALINA_HOME /opt/apache-tomcat

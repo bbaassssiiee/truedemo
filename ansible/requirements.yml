@@ -3,6 +3,9 @@
 - src: geerlingguy.java
   path: ./roles/
 
-- src: hudecof.tomcat
+
+- src: https://github.com/bbaassssiiee/ansible_tomcat.git
+  name: hudecof.tomcat
+  version: extra
   path: ./roles
 
